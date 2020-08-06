@@ -1,0 +1,5 @@
+colorama==0.4.3
+requests==2.23.0
+urllib3==1.25.9
+Jinja2==2.11.2
+click==7.1.2

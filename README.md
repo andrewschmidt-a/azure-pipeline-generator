@@ -3,6 +3,7 @@ This is a YAML Pipeline generator for Azure DevOps. This was designed with Azure
 
 
 ## Execute Hello World
+1. install dependencies `pip3 install -r requirements.txt`
 1. adjust globalVars file to match your project
 2. adjust phase template to match your projects queue ids (for agents)
-3. `python.exe .\pipelineGenerator.py .\helloworld.yml  -d` (you may have to install dependencies)
+3. `python3 ./pipelineGenerator.py ./helloworld.yml  -d` 
