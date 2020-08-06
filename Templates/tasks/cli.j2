@@ -1,0 +1,23 @@
+{
+    "environment": {},
+    "taskId": "46e4be58-730b-4389-8a2f-ea10b3e5e815",
+    "version": "1.*",
+    "name": "Azure CLI: {{ name }}",
+    "refName": "AzureCLI_{{_taskGuid}}",
+    "enabled": {{enabled|default("true")}},
+    "alwaysRun": false,
+    "continueOnError": true,
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "connectedServiceNameARM": "{% if OpsConnectedService %}{{_operationSubServiceEndpoint}}{%else%}{{_connectedServiceName}}{% endif %}",
+        "scriptLocation": "{% if inline %}inlineScript{%else%}scriptPath{% endif %}",
+        "scriptPath": "{% if not inline %}{{fileName}}{% endif %}" ,
+        "inlineScript": "{% if inline %}{{script | replace('\\', '\\\\') | replace('"','\\"') | replace('\n', '\\n')}}{% endif %}",
+        "args": "{% if arguments %}{% for key,value in arguments.items() %}--{{ key }} {{value | replace('"','\\"')}} {% endfor %}{% endif %}",
+        "cwd": "{{workingDirectory}}",
+        "failOnStandardError": "false"
+    }
+}

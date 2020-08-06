@@ -1,0 +1,41 @@
+{
+    "sourceId": "{{feedId}}:{{packageName}}",
+    "type": "PackageManagement",
+    "alias": "{{alias}}",
+    "definitionReference": {
+        "defaultVersionSpecific": {
+            "id": "{% if version %}{{version}}{% else %}{% endif %}",
+            "name": "{% if version %}{{version}}{% else %}{% endif %}"
+        },
+        "defaultVersionType": {
+            "id": "{% if version %}specificVersionType{% else %}latestType{% endif %}",
+            "name": "{% if version %}Specific version{% else %}Latest{% endif %}"
+        },
+        "definition": {
+            "id": "{{packageId}}",
+            "name": "{{packageName}}"
+        },
+        "feed": {
+            "id": "{{feedId}}",
+            "name": "{{feedName}}"
+        },
+        "files": {
+            "id": "{{files | default('**')}}",
+            "name": "{{files | default('**')}}"
+        },
+        "packageType": {
+            "id": "upack",
+            "name": "Universal"
+        },
+        "skipextract": {
+            "id": "",
+            "name": ""
+        },
+        "view": {
+            "id": "{{viewId}}",
+            "name": "{{viewName}}"
+        }
+    },
+    "isPrimary": true,
+    "isRetained": false
+}

@@ -1,0 +1,39 @@
+{
+    "sourceId": "{{_projectGuid}}:{{id}}",
+    "type": "Build",
+    "alias": "{{alias}}",
+    "definitionReference": {
+        "defaultVersionBranch": {
+            "id": "{{branch}}",
+            "name": "{{branch}}"
+        },
+        "defaultVersionSpecific": {
+            "id": "{{buildId}}",
+            "name": "{{version}}"
+        },
+        "defaultVersionTags": {
+            "id": "",
+            "name": ""
+        },
+        "defaultVersionType": {
+            "id": "{% if version %}specificVersionType{% else %}{% if branch %}latestWithBranchAndTagsType{% else %}latestType{% endif %}{% endif %}",
+            "name": "{% if version %}{{version}}{% else %}{% if branch %}Latest from a specific branch with tags{% else %}Latest{% endif%}{% endif %}"
+        },
+        "definition": {
+            "id": "{{id}}",
+            "name": "{{name}}"
+        },
+        "definitions": {
+            "id": "",
+            "name": ""
+        },
+        "IsMultiDefinitionType": {
+            "id": "False",
+            "name": "False"
+        },
+        "project": {
+            "id": "{{_projectGuid}}",
+            "name": "{{_projectName}}"
+        }
+    }
+}

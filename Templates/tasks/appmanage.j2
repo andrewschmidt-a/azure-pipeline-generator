@@ -1,0 +1,31 @@
+{
+    "environment": {},
+    "taskId": "f045e430-8704-11e6-968f-e717e6411619",
+    "version": "0.*",
+    "name": "{{action | default('Swap Slots')}}: {{name}}",
+    "refName": "",
+    "enabled": {{enabled|default("true")}},
+    "alwaysRun": false,
+    "continueOnError": false,
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "ConnectedServiceName": "{{_connectedServiceName}}",
+        "Action": "{{action | default('Swap Slots')}}",
+        "WebAppName": "{{webAppName}}",
+        "SpecifySlot": "false",
+        "ResourceGroupName": "{{resourceGroup}}",
+        "SourceSlot": "{{source}}",
+        "SwapWithProduction": "{% if target %}False{% else %}True{% endif %}",
+        "TargetSlot": "{{target}}",
+        "PreserveVnet": "false",
+        "Slot": "production",
+        "ExtensionsList": "{{",".join(extensions)}}",
+        "OutputVariable": "",
+        "AppInsightsResourceGroupName": "",
+        "ApplicationInsightsResourceName": "",
+        "ApplicationInsightsWebTestName": ""
+    }
+}

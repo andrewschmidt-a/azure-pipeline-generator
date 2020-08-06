@@ -1,0 +1,17 @@
+name: "Hello World"
+
+variables:
+  test: test
+
+stages:
+ - name: "Print Hello world"
+   phases:
+   - name: "Agent job"
+     agent: "linux"
+     tasks:
+     - name: "Delete Resource Group bbdemo"
+       type: "bash"
+       inline: true
+       script: |-
+        echo "hello world!" 
+ 

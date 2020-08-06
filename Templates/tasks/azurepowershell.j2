@@ -1,0 +1,27 @@
+{
+    "environment": {},
+    "taskId": "72a1931b-effb-4d2e-8fd8-f8472a07cb62",
+    "version": "{{version | default("3.*")}}",
+    "name": "{{name}}",
+    "refName": "",
+    "enabled": true,
+    "alwaysRun": false,
+    "continueOnError": {{continueOnError|default("false")}},
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+        "ConnectedServiceName": "",
+        "ConnectedServiceNameARM": "{% if OpsConnectedService %}{{_operationSubServiceEndpoint}}{%else%}{{_connectedServiceName}}{% endif %}",
+        "ScriptType": "{% if inline %}InlineScript{% else %}FilePath{% endif %}",
+        "ScriptPath": "{{filename}}",
+        "Inline": "{{script | replace('\n','\\n')}}",
+        "ScriptArguments": "{% if arguments %}{% for key,value in arguments.items() %}-{{ key }} {{value | replace("\\","\\\\") | replace('"','\\"')}} {% endfor %}{% endif %}",
+        "errorActionPreference": "{{errorActionPreference | default("stop")}}",
+        "FailOnStandardError": "false",
+        "TargetAzurePs": "LatestVersion",
+        "CustomTargetAzurePs": ""
+    }
+}

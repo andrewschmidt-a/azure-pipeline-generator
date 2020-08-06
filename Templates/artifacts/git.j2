@@ -1,0 +1,44 @@
+{
+  "sourceId": "{{_projectGuid}}:{{id}}",
+  "type": "{{type}}",
+  "alias": "{{alias}}",
+  "definitionReference": {
+    "branches": {
+      "id": "{{branch}}",
+      "name": "{{branch}}"
+    },
+    "checkoutNestedSubmodules": {
+      "id": "True",
+      "name": "Any nested submodules within"
+    },
+    "checkoutSubmodules": {
+      "id": "",
+      "name": ""
+    },
+    "defaultVersionSpecific": {
+      "id": "",
+      "name": ""
+    },
+    "defaultVersionType": {
+      "id": "{% if version %}{{version}}{% else %}latestFromBranchType{% endif %}",
+      "name": "{% if version %}{{version}}{% else %}Latest from the default branch{% endif %}"
+    },
+    "definition": {
+      "id": "{{id}}",
+      "name": "IdentityServer"
+    },
+    "fetchDepth": {
+      "id": "",
+      "name": ""
+    },
+    "gitLfsSupport": {
+      "id": "",
+      "name": ""
+    },
+    "project": {
+      "id": "{{_projectGuid}}",
+      "name": "{{_projectName}}"
+    }
+  },
+  "isRetained": false
+}

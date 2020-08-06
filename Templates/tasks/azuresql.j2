@@ -1,0 +1,37 @@
+{
+	"environment": {},
+	"taskId": "ce85a08b-a538-4d2b-8589-1d37a9ab970f",
+	"version": "1.*",
+	"name": "{{name}}",
+	"refName": "",
+	"enabled": {{enabled|default("true")}},
+	"alwaysRun": false,
+	"continueOnError": {{continueOnError|default("true")}},
+	"timeoutInMinutes": {{timeout| default(0)}},
+	"definitionType": "task",
+	"overrideInputs": {},
+	"condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+	"inputs": {
+		"ConnectedServiceNameSelector": "ConnectedServiceNameARM",
+		"ConnectedServiceName": "",
+		"ConnectedServiceNameARM": "{{ _connectedServiceName }}", 
+		"ServerName": "{{server}}",  
+		"DatabaseName": "{{database}}",
+		"SqlUsername": "{{username}}", 
+		"SqlPassword": "{{password}}", 
+		"DeploymentAction": "{{action | default("Publish")}}",
+		"TaskNameSelector": {% if dacpac %}"DacpacTask"{% elif inline%}"InlineSqlTask"{% else %}"SqlTask"{% endif %},
+		{% if dacpac %}"DacpacFile": "{{filename}}",{% endif %}
+		"BacpacFile": "",
+		{% if not inline and not dacpac %}"SqlFile": "{{filename}}", {% endif %}
+		"SqlInline": "{% if inline %}{{script | replace('\\', '\\\\') | replace('"','\\"') | replace('\n', '\\n')}}{% endif %}",
+		"PublishProfile": "",
+		"AdditionalArguments": "{% if arguments %}{% for key,value in arguments.items() %}-{{ key }} {{value | replace("\\","\\\\") | replace('"','\\"')}} {% endfor %}{% endif %}",
+		"SqlAdditionalArguments": "{% if arguments %}{% for key,value in arguments.items() %}-{{ key }} {{value | replace("\\","\\\\") | replace('"','\\"')}} {% endfor %}{% endif %}",
+		"InlineAdditionalArguments": "{% if arguments %}{% for key,value in arguments.items() %}-{{ key }} {{value | replace("\\","\\\\") | replace('"','\\"')}} {% endfor %}{% endif %}",
+		"IpDetectionMethod": "AutoDetect",
+		"StartIpAddress": "",
+		"EndIpAddress": "",
+		"DeleteFirewallRule": "true"
+	}
+}

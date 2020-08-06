@@ -1,0 +1,26 @@
+{
+	"environment": {},
+	"taskId": "fe47e961-9fa8-4106-8639-368c022d43ad",
+	"version": "1.*",
+	"name": "{{name}}",
+	"refName": "npm1",
+	"enabled": true,
+	"alwaysRun": false,
+	"continueOnError": false,
+	"timeoutInMinutes": 0,
+	"definitionType": "task",
+	"overrideInputs": {},
+	"condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+	"inputs": {
+		"command": "{{command}}",
+		"workingDir": "{{workingDir | replace('\\', '\\\\')}}",
+		"verbose": "false",
+		"customCommand": "{{customCommand}}",
+		"customRegistry": "useNpmrc",
+		"customFeed": "",
+		"customEndpoint": "",
+		"publishRegistry": "useExternalRegistry",
+		"publishFeed": "",
+		"publishEndpoint": ""
+	}
+}

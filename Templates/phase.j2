@@ -1,0 +1,24 @@
+{
+    "deploymentInput": {
+        "parallelExecution": {
+            "parallelExecutionType": "none"
+        },
+        "skipArtifactsDownload": false,
+        "artifactsDownloadInput": {
+            "downloadInputs": []
+        },
+        "queueId": {%if agent == "linux" %}33{%else%}9{%endif%},
+        "demands": [],
+        "enableAccessToken": {{enableAccessToken | default("false")}},
+        "timeoutInMinutes": 0,
+        "jobCancelTimeoutInMinutes": 1,
+        "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+        "overrideInputs": {}
+    },
+    "rank": {{_rank}},
+    "phaseType": "agentBasedDeployment",
+    "name": "{{name}}",
+    "refName": null,
+    "workflowTasks": [
+    ]
+}

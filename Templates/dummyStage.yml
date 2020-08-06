@@ -1,0 +1,10 @@
+stages:
+ - name: "Andrew Stage 1"
+   phases:
+   - name: "Agent Job 1 -- Andrew"
+     tasks:
+     - type: "bash"
+       name: "Andrew's Bash Script"
+       inline: true
+       script: "echo 'IOT is cool' | awk '{print \"Team Bluebird \" $2\" \"$3}'"
+       workingDirectory: ""

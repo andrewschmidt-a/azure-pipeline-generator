@@ -1,0 +1,22 @@
+{
+    "environment": {},
+    "taskId": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+    "version": "3.*",
+    "name": "{{name}}",
+    "refName": "",
+    "enabled": {{enabled|default("true")}},
+    "alwaysRun": false,
+    "continueOnError": false,
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "targetType": {% if inline %}"inline"{% else %}"filePath"{% endif %},
+        "filePath": "{% if inline %}{% else %}{{filename}}{% endif %}",
+        "arguments": "{% if arguments %}{% for key,value in arguments.items() %}--{{ key }} {{value | replace('"','\\"')}} {% endfor %}{% endif %}",
+        "script": "{% if inline %}{{script | replace('\\', '\\\\') | replace('"','\\"') | replace('\n', '\\n')}}{% else %}{% endif %}",
+        "workingDirectory": "{{workingDir}}",
+        "failOnStderr": "false"
+    }
+}

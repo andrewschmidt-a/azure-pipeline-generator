@@ -1,0 +1,126 @@
+{
+    "id": 0,
+    "name": "{{name}}",
+    "rank": {{_rank}},
+    "owner": {
+        "displayName": "Andrew Schmidt",
+        "url": "https://app.vssps.visualstudio.com/A1be2e353-2799-41a9-af4e-5d9a54dba17a/_apis/Identities/513f9ce2-4c39-6251-b193-d88bbf9bd898",
+        "_links": {
+            "avatar": {
+            "href": "https://dev.azure.com/{{_orgName}}/_apis/GraphProfile/MemberAvatars/aad.NTEzZjljZTItNGMzOS03MjUxLWIxOTMtZDg4YmJmOWJkODk4"
+            }
+        },
+        "id": "513f9ce2-4c39-6251-b193-d88bbf9bd898",
+        "uniqueName": "A90Q9ZZ@mmm.com",
+        "imageUrl": "https://dev.azure.com/{{_orgName}}/_api/_common/identityImage?id=513f9ce2-4c39-6251-b193-d88bbf9bd898",
+        "descriptor": "aad.NTEzZjljZTItNGMzOS03MjUxLWIxOTMtZDg4YmJmOWJkODk4"
+    },
+    "variables": {},
+    "variableGroups": [],
+    "preDeployApprovals": {
+    "approvals": [
+        {
+        "rank": 1,
+        "isAutomated": {%if approvalsRequired %}false{%else%}true{%endif%},
+        "isNotificationOn": true,
+        "approver": {
+            "displayName": "{%if approvalsRequired %}{{_approverName}}{%else%}null{%endif%}",
+            "id": "{%if approvalsRequired %}{{_approverId}}{%else%}null{%endif%}",
+            "uniqueName": "{%if approvalsRequired %}{{_approverEmail}}{%else%}null{%endif%}"
+        },
+        "id": 2227
+        }
+    ],
+    "approvalOptions": {
+        "requiredApproverCount": 1,
+        "releaseCreatorCanBeApprover": true,
+        "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+        "enforceIdentityRevalidation": false,
+        "timeoutInMinutes": 43200,
+        "executionOrder": 1
+    }
+    },
+    "deployStep": {
+    "id": 2228
+    },
+    "postDeployApprovals": {
+    "approvals": [
+        {
+        "rank": 1,
+        "isAutomated": true,
+        "isNotificationOn": false,
+        "id": 2229
+        }
+    ],
+    "approvalOptions": {
+        "requiredApproverCount": null,
+        "releaseCreatorCanBeApprover": true,
+        "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+        "enforceIdentityRevalidation": false,
+        "timeoutInMinutes": 0,
+        "executionOrder": "afterSuccessfulGates"
+    }
+    },
+    "deployPhases": [
+    ],
+    "environmentOptions": {
+    "emailNotificationType": "OnlyOnFailure",
+    "emailRecipients": "release.environment.owner;release.creator",
+    "skipArtifactsDownload": false,
+    "timeoutInMinutes": 0,
+    "enableAccessToken": false,
+    "publishDeploymentStatus": true,
+    "badgeEnabled": false,
+    "autoLinkWorkItems": false,
+    "pullRequestDeploymentEnabled": false
+    },
+    "demands": [],
+    "conditions": [
+    {% if not requiredStages %}
+        {
+
+            "name": "ReleaseStarted",
+            "conditionType": "event",
+            "value": ""
+        }
+    {%else%}
+      {% for stage in requiredStages %}
+        {% if not loop.first %},{% endif %}
+        {
+          "name": "{{stage.name}}",
+          "conditionType": "environmentState",
+          "value": "{% if stage.partialSuccess %}132{%else%}4{%endif%}"
+        }
+      {% endfor %}
+    {%endif%}
+    ],
+    "executionPolicy": {
+    "concurrencyCount": 1,
+    "queueDepthCount": 0
+    },
+    "schedules": [],
+    "currentRelease": {
+    "id": 0,
+    "url": "https://vsrm.dev.azure.com/{{_orgName}}/{{_projectGuid}}/_apis/Release/releases/0",
+    "_links": {}
+    },
+    "retentionPolicy": {
+    "daysToKeep": 30,
+    "releasesToKeep": 3,
+    "retainBuild": true
+    },
+    "processParameters": {},
+    "properties": {},
+    "preDeploymentGates": {
+    "id": 0,
+    "gatesOptions": null,
+    "gates": []
+    },
+    "postDeploymentGates": {
+    "id": 0,
+    "gatesOptions": null,
+    "gates": []
+    },
+    "environmentTriggers": [],
+    "badgeUrl": "https://vsrm.dev.azure.com/{{_orgName}}/_apis/public/Release/badge/{{_projectGuid}}/{{_pipelineId}}/651"
+}

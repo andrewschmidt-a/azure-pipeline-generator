@@ -1,0 +1,19 @@
+{
+    "environment": {},
+    "taskId": "33c63b11-352b-45a2-ba1b-54cb568a29ca",
+    "version": "0.*",
+    "name": "Use Python {{version}}",
+    "refName": "",
+    "enabled": true,
+    "alwaysRun": false,
+    "continueOnError": false,
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "versionSpec": "{{version}}",
+        "addToPath": "{{addToPath | default("true") }}",
+        "architecture": "{{architecture | default("x64") }}"
+    }
+}

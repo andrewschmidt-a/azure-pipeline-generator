@@ -1,0 +1,13 @@
+{
+    "alias": "{{alias}}",
+    {%if type == "schedule"%}
+    "schedule": {
+        "jobId": "e5f44bca-0a7f-4772-a7e6-7ca4cb91677e",
+        "timeZoneId": "{{timezone | default("Central Standard Time")}}",
+        "startHours": {{hours}},
+        "startMinutes": {{minutes}},
+        "daysToRelease": "{{days}}"
+    },
+    {% endif %}
+    "triggerType": "{{type}}"
+}   

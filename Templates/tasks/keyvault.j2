@@ -1,0 +1,19 @@
+ {
+    "environment": {},
+    "taskId": "1e244d32-2dd4-4165-96fb-b7441ca9331e",
+    "version": "1.*",
+    "name": "Azure Key Vault: {{keyVaultName}}",
+    "refName": "",
+    "enabled": true,
+    "alwaysRun": false,
+    "continueOnError": false,
+    "timeoutInMinutes": 0,
+    "definitionType": "task",
+    "overrideInputs": {},
+    "condition": "{{condition | default("succeeded()" | replace("\"", "\\\""))}}",
+    "inputs": {
+        "ConnectedServiceName": "{{_connectedServiceName}}",
+        "KeyVaultName": "{{keyVaultName}}",
+        "SecretsFilter": "{{filter | default("*")}}"
+    }
+}
